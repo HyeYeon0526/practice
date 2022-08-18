@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .color{
+            padding-top: 10rem;
+            text-align: center;
+            width:100vw;
+            height:100vh;
+            border-style: solid gray 0.5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .btnWrapper{
+            padding:3rem;
+        }
+        button{
+            all:unset;
+            border-style: 0.5rem solid black;
+            background-color: black;
+            color:white;
+            padding : 0.3em 1em;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .color{
+            background-color: gray;
+        }
+    </style>
+    
+    <title>ColorFlipper</title>
+</head>
+<body>
+    <div class="color">
+        <span class="colorChip"> Background Color :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br></span>
+        <div class="btnWrapper">
+            <button type="button" class="changeBtn">click me</button>
+        </div>
+    </div>
+
+    <script>
+        let btn = document.querySelector('.changeBtn');
+
+        btn.addEventListener('click', ColorChange);
+
+        function ColorChange(){
+            let color = ["#FF0000", "#800000", "#FFFF00", "#FFA07A", "#FC5C7D"];
+            let num = Math.floor(Math.random() * color.length);
+            let bodyTag = document.querySelector(".color");
+            let colorChip = document.querySelector(".colorChip");
+
+            bodyTag.style.backgroundColor = color[num];
+
+            colorChip.innerHTML = "Background Color : " + color[num]+"</br>";
+        }
+    </script>
+</body>
+</html>
