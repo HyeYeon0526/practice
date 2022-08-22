@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: gray;
+        }
+        .container{
+            margin:auto;
+            margin-top: 3rem;
+            padding: 2rem;
+            display: block;
+            width : 500px;
+            height : 700px;
+            background-color: white;
+            text-align: center;
+            box-shadow: 1px 1px 10px black;
+        }
+        #job{
+            color : gray;
+        }
+        img{
+            width : 200px;
+            height: 200px;
+            border-radius: 100%;
+        }
+        .next, .prev, .randomBtn{
+            all: unset;
+            border: 2px solid darkgray;
+            padding: 3px 10px 0px 10px;
+            border-radius: 5px;
+            background-color: gray;
+            color:white;
+            margin-bottom: 10px;
+            cursor:pointer;
+        }
+
+
+    </style>
+    <script src="https://kit.fontawesome.com/df4f0d4aaa.js" crossorigin="anonymous"></script>
+    <title>review Carousel</title>
+</head>
+<body>
+    <div class="container">
+        <h1> Our Reviews </h1>
+        <div class="underLine"></div>
+
+        <div class="review">
+            <div class="review">
+                <img src="./image/IMG_3701.jpg" alt="" id="person-img">
+            </div>
+            <h4 id="author">sarah jones</h4>
+            <p id="job">ux desiner</p>
+            <p id="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem voluptate nulla quo doloremque distinctio ducimus, aliquam consectetur nobis illo libero modi quas! Atque ad quibusdam, at blanditiis nam minima vero.</p>
+        </div>
+
+        <div class="btn-container">
+            <button class="prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <button class="randomBtn">random review</button>
+    </div>
+
+    <script>
+        const reviews = [
+            {
+            id: 1,
+            name: "susan smith",
+            job: "web developer",
+            img: "./image/IMG_3701.jpg",
+            text: "어쩌구저쩌구해서 좋앗구용 어쩌구는 쬠 별로 ㅜㅠ",
+            },
+            {
+            id: 2,
+            name: "tori kelly",
+            job: "singer",
+            img: "./image/IMG_3702.jpg",
+            text: "가나다라마바사~",
+            },
+            {
+            id: 3,
+            name: "kim hyeyeon",
+            job: "web developer",
+            img: "./image/IMG_3703.jpg",
+            text: "두썸 아로마노트 아메는 쫌 별로네요ㅜㅠ 다크어쩌구가 더 맛있는듯 ;;"
+            }
+        ]
+
+        const img = document.getElementById("person-img");
+        const author = document.getElementById("author");
+        const job = document.getElementById("job");
+        const info = document.getElementById("info");
+
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+        const randomBtn = document.querySelector(".randomBtn");
+    
+        let currentItem = 0;
+
+        window.addEventListener("DOMContentLoaded",function(){
+            showPerson(currentItem);
+        });
+
+        function showPerson(person) {
+            const item = reviews[person];
+            img.src = item.img;
+            author.textContent = item.name;
+            job.textContent = item.job;
+            info.textContent = item.text;
+        }
+
+        nextBtn.addEventListener("click", function(){
+            currentItem++;
+            if(currentItem > reviews.length -1){
+                currentItem = 0;
+            }
+            showPerson(currentItem);
+        })
+        prevBtn.addEventListener("click", function(){
+            currentItem--;
+            if(currentItem < 0){
+                currentItem = reviews.length - 1;
+            }
+            showPerson(currentItem);
+        })
+
+        randomBtn.addEventListener('click', function(){
+            currentItem = Math.floor(Math.random() * reviews.length)
+            showPerson(currentItem);
+        })
+    </script>
+</body>
+</html>
